@@ -1,3 +1,32 @@
-<p>
-  create-account works!
-</p>
+<app-slider></app-slider>
+<div align="center" id="banks_list_settings" style="float: left; margin-top: 50px; clear: both;">
+    
+                 <input type="text" id="bank_name_input" placeholder="Bank Name" style="text-align: center;"> <br><br>
+            Min deposit percent:<br><br>
+                <input type="number" id="min_dep_per" min="0" value="8" step="1">
+            <br><br>
+            Max credit percent:<br> <br>
+                <input type="number" id="max_credit_per" min="0" value="70" step="1">
+            
+        </div>
+        <div id="bank_list_block" style="float: left; margin-left: 2%">
+        <table id="banks_table" border="1" style=" margin: 0; padding: 0; font-size: 20px; text-align: center;">
+            <caption><h2>Banks list</h2></caption>
+            <tr id="table_head" style="font-weight: bold;">
+                <td>Name</td>
+                <td>Deposit percent</td>
+                <td>Credit percent</td>
+            </tr>
+            <tr>
+                <td>Alfa Bank</td>
+                <td>13%</td>
+                <td>43%</td>
+            </tr>
+             <tr>
+                <td>Privat Bank</td>
+                <td>15%</td>
+                <td>50%</td>
+            </tr>
+        </table>
+             <button id="account_create_buton" style="margin-top: 20px; margin-left: 32%; cursor: pointer; font-size: 16px">Create new account</button>
+        </div>
