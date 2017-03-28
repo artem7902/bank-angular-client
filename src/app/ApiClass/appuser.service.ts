@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 import { LocalStorageService } from 'angular-2-local-storage';
 import { LibUser } from './lib-user';
+import * as CryptoJS from "crypto-js";
 
 import 'rxjs/add/operator/toPromise';
 
@@ -15,9 +16,11 @@ export class AppuserService {
         private http: Http,
         private localStService: LocalStorageService
   ) { }
-login(login:string, password: string){
+login(login:string, password: string, firstName: string, lastName: string){
     this.localStService.add('login', login);
     this.localStService.add('password', password );    
+    this.localStService.add('firstName', firstName);
+    this.localStService.add('lastName', lastName );   
   }
   getUsers(): Promise<LibUser[]> {
     const url = `${this.usersUrl}/all`;
@@ -46,27 +49,29 @@ login(login:string, password: string){
        );
   }
 
-  create(user: LibUser): Promise<any> {
+  create(user: LibUser): Promise<LibUser> {
     const url = `${this.usersUrl}/add`;
+    user.password=CryptoJS.SHA512(user.password, '3357bank');
+    user.password=user.password.toString();
     let data={"user": null};
     data.user = user;
     return this.http.post(url,data,{headers: this.headers})
       .toPromise()
       .then(response =>{
         console.log("user create JSON: "+JSON.stringify(response.json()));
-        response.json().users[0] as LibUser;
+        return Promise.resolve(response.json().users[0] as LibUser);
       })
       .catch(this.handleError);
   }
 
-  update(user:  LibUser): Promise<LibUser> {
+  update(user:  LibUser): Promise<any> {
     const url = `${this.usersUrl}/update`;
     let data={"user":null};
     data.user = user;
     return this.http.post(url,data,{headers: this.headers})
       .toPromise()
       .then(response => response.json().users[0] as LibUser)
-      .catch(this.handleError);;
+      .catch(this.handleError);
   }
 
   delete(id: number): Promise<number> {
@@ -76,6 +81,32 @@ login(login:string, password: string){
       .then(response => response.json().retcode as number)
       .catch(this.handleError);
   }
+  check(user: LibUser): Promise<LibUser>{
+    const url = `${this.usersUrl}/check_user`;
+    user.password=CryptoJS.SHA512(user.password, '3357bank');
+    user.password=user.password.toString();
+    let data={"user": null};
+    data.user = user;
+    return this.http.post(url,data,{headers: this.headers})
+      .toPromise()
+      .then(response =>{
+        console.log("user check JSON: "+JSON.stringify(response.json()));
+        return Promise.resolve(response.json().users[0] as LibUser);
+      })
+      .catch(this.handleError);
+    }
+      get_user_info(user: LibUser) : Promise<LibUser>{
+    const url = `${this.usersUrl}/check_user`;
+    let data={"user": null};
+    data.user = user;
+    return this.http.post(url,data,{headers: this.headers})
+      .toPromise()
+      .then(response =>{
+        console.log("user check JSON: "+JSON.stringify(response.json()));
+        return Promise.resolve(response.json().users[0] as LibUser);
+      })
+      .catch(this.handleError);
+    }
 
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error); // for demo purposes only

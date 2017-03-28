@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Title }     from '@angular/platform-browser';
 import { Router }            from '@angular/router';
-import * as CryptoJS from "crypto-js";
 
 import { LibUser }                from '../ApiClass/lib-user';
 import { AppuserService }         from '../ApiClass/appuser.service';
@@ -39,15 +38,17 @@ export class RegistrationComponent implements OnInit {
     user.phone = phone;
     user.wallet = 1000;
     user.role_id = 1;
-    password=CryptoJS.SHA512(password, '3357bank');
-    user.password=password.toString();
+    user.password=password;
     this.libuserService.create(user)
       .then(user => {
+      if(user!=null){
         alert('You have successfully signed up! Please sign in!');
         this.router.navigate(['/login']);
+        }
+      else alert("Information about yourself is incorrect, please check all fields!");
       },
       function()
-        {alert('You have some problem with registration!');}
+        {alert('We have some problem on Main Server, please send message to support');}
         );
   }
 }

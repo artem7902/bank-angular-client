@@ -1,7 +1,7 @@
 <div align="center"><h1>Hello, please sign in or sign up</h1></div>
-<p align="center">Login: <input type="text" id="login"></p>
-<p align="center">Password: <input type="password" id="password" ></p>
+<p align="center">Login: <input type="text" #login></p>
+<p align="center">Password: <input type="password" #password ></p>
 <div align="center">
-<input  type="button" value="Sign in" id="sign_in" style="margin-right:9%;">
+<input  type="button" value="Sign in" id="sign_in" style="margin-right:9%;"  (click)="user_check(login.value, password.value); password.value='';">
 <input routerLink="/registration"  type="button" value="Sign on" id="sign_on">
 </div>

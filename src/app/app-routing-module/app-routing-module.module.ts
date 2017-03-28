@@ -12,7 +12,7 @@ import { PagenotfoundComponent } from '../pagenotfound/pagenotfound.component';
 
 const routes: Routes = [
 { path: '',  redirectTo: "/login", pathMatch: 'full'},
-  { path: 'dashboard',  component: DashboardComponent },
+  { path: 'dashboard/:username',  component: DashboardComponent },
   { path: 'registration', component: RegistrationComponent },
   { path: ':username/accounts/new',  component: CreateAccountComponent },
   { path: ':username/accounts/:id',     component: AccountComponent },

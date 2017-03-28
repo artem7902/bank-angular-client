@@ -1,15 +1,36 @@
 import { Component, OnInit } from '@angular/core';
-
+import { AppuserService }         from '../ApiClass/appuser.service';
+import { Router }            from '@angular/router';
+import { LibUser }                from '../ApiClass/lib-user';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  providers: [AppuserService]
 })
 export class LoginComponent implements OnInit {
-    login_title='Main page Client-bank project';
-  constructor() { }
+  constructor(private libuserService: AppuserService, private router: Router) { }
 
   ngOnInit() {
   }
-
-}
+    user_check(login: string, password : string){
+    if (!login || !password) {
+    alert('You did not fill all fields!');
+      return;
+    }
+    let user: LibUser = new LibUser();
+    user.login=login.trim();
+    user.password=password;
+    this.libuserService.check(user)
+      .then(user => {
+      if(user!=null){
+        this.libuserService.login(user.login, user.password, user.firstName, user.lastName);
+        this.router.navigate(['/dashboard/' + user.login]);
+        }
+      else alert("Login or password is incorrect, please try again!");
+      },
+      function()
+        {alert('We have some problem on Main Server, please send message to support');}
+        );
+  }
+    }

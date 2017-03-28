@@ -1,6 +1,6 @@
 export class LibNotification {
-notif_id: number;
+notificationId : string;
 text: string;
 date: string;
-user_id: number;
+userId?: string;
 }
