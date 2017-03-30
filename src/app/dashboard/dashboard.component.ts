@@ -13,4 +13,7 @@ export class DashboardComponent implements OnInit {
    this.titleService.setTitle('Dashboard');
   }
 
+GetAcccountsList(){
+
+}
 }

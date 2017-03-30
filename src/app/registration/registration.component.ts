@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Title }     from '@angular/platform-browser';
+import { LocalStorageService } from 'angular-2-local-storage';
 import { Router }            from '@angular/router';
 
 import { LibUser }                from '../ApiClass/lib-user';
@@ -12,9 +13,11 @@ import { AppuserService }         from '../ApiClass/appuser.service';
 })
 export class RegistrationComponent implements OnInit {
 
-  constructor(private titleService: Title, private libuserService: AppuserService, private router: Router) { }
+  constructor(private titleService: Title, private libuserService: AppuserService, private router: Router, private localStService: LocalStorageService) { }
 
   ngOnInit() {
+  if(this.localStService.get<string>('login')!='' && this.localStService.get<string>('password')!='')
+  this.router.navigate(['/dashboard/' + this.localStService.get<string>('login')]);
   this.titleService.setTitle('New User Registration');
   }
  add(personal_id: number, login: string, password: string, first_name: string, last_name: string, email: string, adress: string, phone: string): void {

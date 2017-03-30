@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AppuserService }         from '../ApiClass/appuser.service';
 import { Router }            from '@angular/router';
+import { LocalStorageService } from 'angular-2-local-storage';
+
 import { LibUser }                from '../ApiClass/lib-user';
 @Component({
   selector: 'app-login',
@@ -9,9 +11,11 @@ import { LibUser }                from '../ApiClass/lib-user';
   providers: [AppuserService]
 })
 export class LoginComponent implements OnInit {
-  constructor(private libuserService: AppuserService, private router: Router) { }
+  constructor(private libuserService: AppuserService, private router: Router, private localStService: LocalStorageService) { }
 
   ngOnInit() {
+    if(this.localStService.get<string>('login')!='' && this.localStService.get<string>('password')!='')
+    this.router.navigate(['/dashboard/' + this.localStService.get<string>('login')]);
   }
     user_check(login: string, password : string){
     if (!login || !password) {
@@ -21,16 +25,14 @@ export class LoginComponent implements OnInit {
     let user: LibUser = new LibUser();
     user.login=login.trim();
     user.password=password;
-    this.libuserService.check(user)
-      .then(user => {
-      if(user!=null){
-        this.libuserService.login(user.login, user.password, user.firstName, user.lastName);
+    this.libuserService.login(user.login, user.password)
+      .then(() => {
         this.router.navigate(['/dashboard/' + user.login]);
+        })
+        .catch( ()=> 
+        {
+        alert('We have some problem on Main Server, please send message to support');
         }
-      else alert("Login or password is incorrect, please try again!");
-      },
-      function()
-        {alert('We have some problem on Main Server, please send message to support');}
         );
   }
     }

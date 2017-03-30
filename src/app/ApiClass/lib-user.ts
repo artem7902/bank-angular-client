@@ -1,7 +1,7 @@
 export class LibUser{
     user_id?: number;
     password?: string;
-    login: string;
+    login?: string;
     firstName?: string;
     lastName?: string;
     email?: string;
@@ -9,4 +9,7 @@ export class LibUser{
     phone?: string;
     wallet?: number;
     role_id?: number;
+    notif_size?: number;
+    currentTime?: string;
+    FullName? : string;
 }
