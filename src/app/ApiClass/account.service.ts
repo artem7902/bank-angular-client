@@ -8,7 +8,9 @@ export class AccountService {
 
   private headers = new Headers({'Content-Type': 'application/json'});
   private usersUrl = 'http://localhost:3357';  // URL to web api
+  
   constructor(private http: Http, private localStService: LocalStorageService) { }
+  
   getAccountsForUser(username: string): Promise<LibAccount[]>{
     const url = `${this.usersUrl}/users/${username}/accounts`;
     this.headers.set('X-Authorization', this.localStService.get<string>('token'));
@@ -21,6 +23,7 @@ export class AccountService {
                })
                .catch(this.handleError);
 }
+                     
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error); // for demo purposes only
     return Promise.reject(error.message || error);
