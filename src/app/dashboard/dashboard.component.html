@@ -3,22 +3,18 @@
         <table id="account_table" border="1" style=" margin: 0; padding: 0; font-size: 20px; text-align: center;">
             <caption><h2>Accounts</h2></caption>
             <tr id="table_head" style="font-weight: bold;">
+                <td>Account number</td>
                 <td>Bank</td>
                 <td>Balance</td>
                 <td>Deposit percent</td>
                 <td>Credit percent</td>
             </tr>
-            <tr>
-                <td>Alfa Bank</td>
-                <td>294021.94</td>
-                <td>21%</td>
-                <td>100%</td>
-            </tr>
-             <tr>
-                <td>Raifanzel Bank Aval</td>
-                <td>2941.94</td>
-                <td>4%</td>
-                <td>45%</td>
+            <tr *ngFor="let account of this.accounts">
+                <td>{{account.accountId}}</td>
+                <td>{{account.bankName}}</td>
+                <td>{{account.value}}</td>
+                <td>{{account.CreditPersent}}</td>
+                <td>{{account.DepositPersent}}</td>
             </tr>
         </table>
             <button routerLink="/username/accounts/new" id="account_create_buton" style="margin-top: 20px; margin-left: 10%; cursor: pointer; font-size: 16px">Create new account</button>

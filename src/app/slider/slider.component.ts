@@ -20,6 +20,7 @@ export class SliderComponent implements OnInit {
   ngOnInit() {
     this.today=new Date();
     this.user = new LibUser();
+    this.UpdateInfo();
     this.TimeInt=setInterval(() => {
      this.today=new Date((this.today.valueOf() + 1000));
      }, 1000);

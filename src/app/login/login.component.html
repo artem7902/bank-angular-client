@@ -2,6 +2,6 @@
 <p align="center">Login: <input type="text" #login></p>
 <p align="center">Password: <input type="password" #password ></p>
 <div align="center">
-<input  type="button" value="Sign in" id="sign_in" style="margin-right:9%;"  (click)="user_check(login.value, password.value); password.value='';">
-<input routerLink="/registration"  type="button" value="Sign on" id="sign_on">
+<input routerLink="/registration" style="margin-right:9%;"  type="button" value="Sign up" id="sign_up">
+<input  type="button" value="Sign in" id="sign_in"   (click)="user_check(login.value, password.value); password.value='';">
 </div>
