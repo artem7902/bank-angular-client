@@ -24,7 +24,7 @@ export class SliderComponent implements OnInit {
     this.TimeInt=setInterval(() => {
      this.today=new Date((this.today.valueOf() + 1000));
      }, 1000);
-     this.InfoInt=setInterval(() => {
+    this.InfoInt=setInterval(() => {
       this.UpdateInfo();
      }, 10000);
   }
@@ -54,9 +54,10 @@ export class SliderComponent implements OnInit {
     this.localStService.set('login', ''); 
     this.localStService.set('password', '');
     this.localStService.set('token', '');
-    clearInterval(this.InfoInt);
-    clearInterval(this.TimeInt);
     this.router.navigate(['/login']);
     }
-
+    StopInterval(){
+     clearInterval(this.InfoInt);
+     clearInterval(this.TimeInt);    
+     }
 }
