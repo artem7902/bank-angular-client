@@ -17,18 +17,16 @@ export class AppuserService {
         private http: Http,
         private localStService: LocalStorageService
   ) { }
-login(login:string, password: string){
+login(login:string, password: string): Promise<LibUser>{
    this.token = "";
     const url = `${this.usersUrl}/auth`;
     let data={"login":login, "password":password};
     return this.http.post(url,data,{headers: this.headers})
       .toPromise()
       .then(response => {
-         this.loggedUser = response.json().user;
          this.token = response.json().token;
-         this.localStService.set('login', login);
-         this.localStService.set('password', password);
          this.localStService.set('token', this.token);
+         return Promise.resolve(response.json().user as LibUser);
       })
       .catch(this.handleError);
   }

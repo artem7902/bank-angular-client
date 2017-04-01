@@ -26,8 +26,15 @@ export class LoginComponent implements OnInit {
     user.login=login.trim();
     user.password=password;
     this.libuserService.login(user.login, user.password)
-      .then(() => {
+      .then((user) => {
+        if(user!=null){
+        this.localStService.set('login', login);
+        this.localStService.set('password', password);
         this.router.navigate(['/dashboard/' + user.login]);
+        }
+        else{
+        alert('Login or password is incorrect, please try again!');
+        }
         })
         .catch( ()=> 
         {
