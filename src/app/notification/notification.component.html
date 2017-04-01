@@ -6,13 +6,9 @@
                 <td>Date</td>
                 <td>Text</td>
             </tr>
-            <tr>
-                <td>21.09.2015</td>
-                <td>You mobile phone was change to +390853145532</td>
-            </tr>
-             <tr>
-                <td>20.09.2015</td>
-                <td>You have new transaction from account 12451, sender: Artem Efimenko</td>
+            <tr *ngFor="let notification of this.notifications" [style.font-weight]="getStyle(notification.isChecked)">
+                <td>{{notification.date}}</td>
+                <td>{{notification.text}}</td>
             </tr>
         </table>
         </div>
