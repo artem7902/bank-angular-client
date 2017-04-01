@@ -13,14 +13,16 @@ import { LibTransaction } from '../ApiClass/lib-transaction';
   providers: [AccountService]
 })
 export class AccountComponent implements OnInit {
-    private accountId: number;
+    private accountId: string;
     private account: LibAccount;
     
   constructor(private titleService: Title, private service: AccountService, private thisRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.titleService.setTitle('Account #');
-    this.accountId = +this.thisRoute.snapshot.params['accountId'];
+    this.accountId = this.thisRoute.snapshot.params['accountId'];
+    this.account=new LibAccount();
+    this.account.transaction=new Array<LibTransaction>();
     this.getAccount();
   }
 
@@ -31,7 +33,6 @@ export class AccountComponent implements OnInit {
                   this.account = response.json().account as LibAccount;
               console.log(this.account.value);
               this.account.transaction = response.json().transaction as Array<LibTransaction>;
-             // console.log(la.transaction[0]);
               })
               .catch(() => {
                       console.log("Transactions get error or Rest is turn off!");

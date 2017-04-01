@@ -25,7 +25,7 @@ export class AccountService {
                })
                .catch(this.handleError);
 }
-  getAccountTransactions(accountId: number): Promise<any>{
+  getAccountTransactions(accountId: string): Promise<any>{
       const url = `${this.usersUrl}/account=${accountId}`;
       this.headers.set('X-Authorization', this.localStService.get<string>('token'));
       let options = new RequestOptions({ headers: this.headers });

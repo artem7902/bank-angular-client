@@ -20,7 +20,7 @@ export class RegistrationComponent implements OnInit {
   this.router.navigate(['/dashboard/' + this.localStService.get<string>('login')]);
   this.titleService.setTitle('New User Registration');
   }
- add(personal_id: number, login: string, password: string, first_name: string, last_name: string, email: string, adress: string, phone: string): void {
+ add(personal_id: string, login: string, password: string, first_name: string, last_name: string, email: string, adress: string, phone: string): void {
     login =  login.trim();
     first_name = first_name.trim();
     last_name = last_name.trim();
