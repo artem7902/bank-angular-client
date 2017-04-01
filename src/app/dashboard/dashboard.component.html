@@ -9,7 +9,7 @@
                 <td>Deposit percent</td>
                 <td>Credit percent</td>
             </tr>
-            <tr *ngFor="let account of this.accounts">
+            <tr *ngFor="let account of this.accounts" (click)="GotoAccount(account.accountId)">
                 <td>{{account.accountId}}</td>
                 <td>{{account.bankName}}</td>
                 <td>{{account.value}}</td>
