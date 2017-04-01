@@ -18,8 +18,6 @@ export class AppuserService {
         private localStService: LocalStorageService
   ) { }
 login(login:string, password: string){
-    password=CryptoJS.SHA512(password, '3357bank');
-    password=password.toString();
    this.token = "";
     const url = `${this.usersUrl}/auth`;
     let data={"login":login, "password":password};
@@ -63,8 +61,6 @@ login(login:string, password: string){
 
   create(user: LibUser): Promise<LibUser> {
     const url = `${this.usersUrl}/users/add`;
-    user.password=CryptoJS.SHA512(user.password, '3357bank');
-    user.password=user.password.toString();
     let data={"user": null};
     data.user = user;
     return this.http.post(url,data,{headers: this.headers})
