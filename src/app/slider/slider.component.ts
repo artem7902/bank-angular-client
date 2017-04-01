@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalStorageService } from 'angular-2-local-storage';
-import { Router }            from '@angular/router';
+import { Router,  NavigationStart}            from '@angular/router';
 
 import { AppuserService }         from '../ApiClass/appuser.service';
 import { LibUser }                from '../ApiClass/lib-user';
@@ -27,6 +27,10 @@ export class SliderComponent implements OnInit {
     this.InfoInt=setInterval(() => {
       this.UpdateInfo();
      }, 10000);
+    this.router.events.subscribe((event) =>
+    {
+    if(event instanceof NavigationStart){  this.StopInterval()};
+    });
   }
   UpdateInfo(){
        this.libuserService.getSliderInfo(this.localStService.get<string>('login'))
@@ -51,11 +55,13 @@ export class SliderComponent implements OnInit {
         );
     }
   Logout(){
+    this.StopInterval();
     this.localStService.set('login', ''); 
     this.localStService.set('password', '');
     this.localStService.set('token', '');
     this.router.navigate(['/login']);
-    }
+    }     
+             
     StopInterval(){
      clearInterval(this.InfoInt);
      clearInterval(this.TimeInt);    
