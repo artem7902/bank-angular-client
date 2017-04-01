@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalStorageService } from 'angular-2-local-storage';
-import { Router,  NavigationStart}            from '@angular/router';
+import { Router,  NavigationStart, ActivatedRoute, Params}            from '@angular/router';
 
 import { AppuserService }         from '../ApiClass/appuser.service';
 import { LibUser }                from '../ApiClass/lib-user';
@@ -15,7 +15,7 @@ export class SliderComponent implements OnInit {
   private user: LibUser;
   public InfoInt;
   public TimeInt;
-  constructor( private libuserService: AppuserService, private localStService: LocalStorageService, private router: Router) { }
+  constructor( private libuserService: AppuserService, private localStService: LocalStorageService, private router: Router, private activerout: ActivatedRoute) { }
 
   ngOnInit() {
     this.today=new Date();
@@ -33,7 +33,7 @@ export class SliderComponent implements OnInit {
     });
   }
   UpdateInfo(){
-       this.libuserService.getSliderInfo(this.localStService.get<string>('login'))
+       this.libuserService.getSliderInfo(this.activerout.snapshot.params['username'])
       .then(user => {
       if(user==null)alert("Login is incorrect!");
       else{
@@ -42,13 +42,13 @@ export class SliderComponent implements OnInit {
       }).catch(
       () =>
         {
-        console.log("Autorization false or Rest is turn off!");
         this.libuserService.login(this.localStService.get<string>('login'), this.localStService.get<string>('password'))
         .then(() => {
         })
         .catch( ()=> 
         {
-        this.Logout()
+        console.log("Autorization false or Rest is turn off!");
+        this.Logout();
         }
         );
         }
