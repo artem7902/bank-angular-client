@@ -2,7 +2,7 @@ tr:not(:nth-child(1)){
     cursor: pointer;
 }
 tr:hover:not(:nth-child(1)){
-    background-color: green;
+    background-color: yellow;
 }
 #wallet_button, #notification_button, #logout_button{
     cursor: pointer;
