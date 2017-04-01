@@ -1,6 +1,7 @@
 export class LibTransaction {
-transaction_id: number;
+transactionId: number;
 value: number;
 date: string;
-account_id: number;
+Info: string;
+accountId?: number;
 }

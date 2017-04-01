@@ -3,6 +3,7 @@ import { Headers, Http, RequestOptions } from '@angular/http';
 import { LocalStorageService } from 'angular-2-local-storage';
 
 import  { LibAccount } from './lib-account'
+import { LibTransaction } from './lib-transaction'
 import  { LibBank } from './lib-bank'
 @Injectable()
 export class AccountService {
@@ -24,6 +25,22 @@ export class AccountService {
                })
                .catch(this.handleError);
 }
+  getAccountTransactions(accountId: number): Promise<any>{
+      const url = `${this.usersUrl}/account=${accountId}`;
+      this.headers.set('X-Authorization', this.localStService.get<string>('token'));
+      let options = new RequestOptions({ headers: this.headers });
+      return this.http.get(url, options)
+              .toPromise()
+              .then(response => {
+                  console.log("transactions JSON: "+JSON.stringify(response.json()));
+                  /*let la: LibAccount = response.json().account as LibAccount;
+                  console.log(la.value);
+                  la.transaction = response.json().transaction as Array<LibTransaction>;
+                  console.log(la.transaction[0]);*/
+                  return Promise.resolve(response);
+              })
+              .catch(this.handleError);
+  }
    getBanks(bank: LibBank): Promise<LibBank[]>{
     const url = `${this.usersUrl}/banks`;
     this.headers.set('X-Authorization', this.localStService.get<string>('token'));

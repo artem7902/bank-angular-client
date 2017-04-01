@@ -1,9 +1,9 @@
 <app-slider></app-slider>
         <div id="account_info_block" style="float: left; margin-top: 30px; clear: both;">
             <h2>Account #account_id</h2>
-            <span id="balance">Balance: </span> balance <br>  <br>
-            required_payment <br> <br>
-            monthly_profit <br> <br>
+            <span id="balance">Balance: </span> {{this.account.value}} <br>  <br>
+            <!-- required_payment <br> <br>
+            monthly_profit <br> <br> -->
             Bring in: <input type="text" id="bring_in"> <button id="bring_in_button">OK</button> <br>  <br>
             Withdraw: <input type="text" id="withdraw"> <button id="withdraw_button">OK</button> <br>  <br>
             <h3>Transfer Money</h3>
@@ -20,15 +20,10 @@
                 <td>Value</td>
                 <td>Description</td>
             </tr>
-            <tr>
-                <td>21.09.2015</td>
-                <td>12994,39</td>
-                <td>Got money from account #18592</td>
-            </tr>
-             <tr>
-                <td>20.09.2015</td>
-                <td>21984</td>
-                <td>Send money from you account to account #1885</td>
+            <tr *ngFor="let transaction of this.account.transaction">
+                <td>{{transaction.date}}</td>
+                <td>{{transaction.value}}</td>
+                <td>{{transaction.Info}}</td>
             </tr>
         </table>
         </div>

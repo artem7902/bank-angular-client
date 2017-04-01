@@ -1,3 +1,5 @@
+import {LibTransaction} from './lib-transaction'
+
 export class LibAccount {
 accountId?: number;
 value?: number;
@@ -8,4 +10,5 @@ bankName?: string;
 CreditPersent?: string;
 DepositPersent?: string;
 CreditLimit?: number;
+transaction?: Array<LibTransaction>;
 }
