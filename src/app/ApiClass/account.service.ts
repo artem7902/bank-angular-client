@@ -41,6 +41,20 @@ export class AccountService {
               })
               .catch(this.handleError);
   }
+  
+  transfer(account_id: string, value: string, currentAccountId: string): Promise<any> {
+      const url = `${this.usersUrl}/${currentAccountId}/transfer`;
+      this.headers.set('X-Authorization', this.localStService.get<string>('token'));
+      let options = new RequestOptions({ headers: this.headers });
+      let data = {"value":value, "toAccountId":account_id};
+      return this.http.post(url, data, options)
+              .toPromise()
+              .then(response => {
+                  return Promise.resolve(response);
+              })
+              .catch(this.handleError);
+  }
+  
    getBanks(bank: LibBank): Promise<LibBank[]>{
     const url = `${this.usersUrl}/banks`;
     this.headers.set('X-Authorization', this.localStService.get<string>('token'));

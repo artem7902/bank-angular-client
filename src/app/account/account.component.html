@@ -7,9 +7,9 @@
             Bring in: <input type="text" id="bring_in"> <button id="bring_in_button">OK</button> <br>  <br>
             Withdraw: <input type="text" id="withdraw"> <button id="withdraw_button">OK</button> <br>  <br>
             <h3>Transfer Money</h3>
-            Id: <input type="text" id="accout_id"> <br>  <br>
-            Value: <input type="text" id="value"> <br>  <br>
-            <button id="transfer_button">Send Money</button>
+            Id: <input type="text" #account_id> <br>  <br>
+            Value: <input type="text" #value> <br>  <br>
+            <button id="transfer_button" (click) = "transfer(account_id.value, value.value)">Send Money</button>
         </div>
         
                   <div id="transactions_block" style="float: left; margin-left: 2%">
