@@ -31,8 +31,10 @@ login(login:string, password: string): Promise<LibUser>{
       .catch(this.handleError);
   }
   getUsers(): Promise<LibUser[]> {
-    const url = `${this.usersUrl}/all`;
-    return this.http.get(url,{headers: this.headers})
+    const url = `${this.usersUrl}/users/all`;
+    this.headers.set('X-Authorization', this.localStService.get<string>('token'));
+    let options = new RequestOptions({ headers: this.headers });
+    return this.http.get(url, options)
                .toPromise()
                .then(response =>{
                  console.log("user JSON: "+JSON.stringify(response.json()));
