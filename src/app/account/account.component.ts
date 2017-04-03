@@ -15,6 +15,7 @@ import { LibTransaction } from '../ApiClass/lib-transaction';
 export class AccountComponent implements OnInit {
     private accountId: string;
     private account: LibAccount;
+    private error_message: string;
     
   constructor(private titleService: Title, private service: AccountService, private thisRoute: ActivatedRoute, private router: Router) { }
 
@@ -23,6 +24,7 @@ export class AccountComponent implements OnInit {
     this.accountId = this.thisRoute.snapshot.params['accountId'];
     this.account=new LibAccount();
     this.account.transaction=new Array<LibTransaction>();
+    this.error_message = "";
     this.getAccount();
   }
 
@@ -49,6 +51,7 @@ export class AccountComponent implements OnInit {
                   this.account = response.json().account as LibAccount;
                   console.log(this.account.value);
                   this.account.transaction = response.json().transaction as Array<LibTransaction>;
+                  this.error_message = response.json().error_message as string;
               })
               .catch(() => {
                   console.log("Transactions get error or Rest is turn off!");
@@ -66,6 +69,7 @@ export class AccountComponent implements OnInit {
           this.account = response.json().account as LibAccount;
           console.log(this.account.value);
           this.account.transaction = response.json().transaction as Array<LibTransaction>;
+          this.error_message = response.json().error_message as string;
       })
       .catch(() => {
           console.log("Transactions get error or Rest is turn off!");

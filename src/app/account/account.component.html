@@ -1,6 +1,6 @@
 <app-slider></app-slider>
         <div id="account_info_block" style="float: left; margin-top: 30px; clear: both;">
-            <h2>Account #account_id</h2>
+            <h2>Account {{this.account.accountId}}</h2>
             <span id="balance">Balance: </span> {{this.account.value}} <br>  <br>
             <!-- required_payment <br> <br>
             monthly_profit <br> <br> -->
@@ -13,7 +13,8 @@
             <h3>Transfer Money</h3>
             Id: <input type="text" #account_id> <br>  <br>
             Value: <input type="text" #value> <br>  <br>
-            <button id="transfer_button" (click) = "transfer(account_id.value, value.value)">Send Money</button>
+            <button id="transfer_button" (click) = "transfer(account_id.value, value.value)">Send Money</button> <br>  <br>
+            <h3 style="color: red">{{this.error_message}}</h3>
         </div>
         
                   <div id="transactions_block" style="float: left; margin-left: 2%">
