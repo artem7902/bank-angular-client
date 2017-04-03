@@ -1,5 +1,5 @@
 export class LibUser{
-    user_id?: number;
+    user_id?: string;
     password?: string;
     login?: string;
     firstName?: string;

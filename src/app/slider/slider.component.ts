@@ -43,7 +43,9 @@ export class SliderComponent implements OnInit {
       () =>
         {
         this.libuserService.login(this.localStService.get<string>('login'), this.localStService.get<string>('password'))
-        .then(() => {
+        .then((user) => {
+            if(user==null) this.Logout();
+            else this.router.navigate(['/login']);
         })
         .catch( ()=> 
         {

@@ -46,7 +46,7 @@ export class CreateAccountComponent implements OnInit {
     }
     this.libaccountService.AddAccount(this.thisRoute.snapshot.params['username'], this.currentBank)
       .then(account => {
-        alert('Add new account with id ' + account.accountId)
+        if(account!=null)alert('Add new account with id ' + account.accountId)
       }).catch(
       () =>
         {

@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: 'dashboard/:username',  component: DashboardComponent },
   { path: 'registration', component: RegistrationComponent },
   { path: ':username/accounts/new',  component: CreateAccountComponent },
-  { path: ':username/accounts/:id',     component: AccountComponent },
+  { path: ':username/accounts/:accountId',     component: AccountComponent },
   { path: 'login',  component: LoginComponent },
   { path: ':username/notifications',  component: NotificationComponent },
 {path: 'admin' , component:AdminComponent},
