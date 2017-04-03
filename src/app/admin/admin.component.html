@@ -1,0 +1,6 @@
+<div align="center"><h1>Control panel for admin's users</h1></div>
+<p align="center">Login: <input type="text" #login></p>
+<p align="center">Password: <input type="password" #password ></p>
+<div align="center">
+<input  type="button" value="Sign in" id="sign_in"   (click)="user_check(login.value, password.value); password.value='';">
+</div>

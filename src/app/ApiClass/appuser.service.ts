@@ -56,6 +56,20 @@ login(login:string, password: string): Promise<LibUser>{
         this.handleError
        );
   }
+  allGetUser(): Promise<LibUser[]> {
+    const url = `${this.usersUrl}/users/all`;
+    return this.http.get(url,{headers: this.headers}).toPromise()
+         .then(response => {
+          let user: LibUser;
+          console.log("user JSON: "+JSON.stringify(response.json()));
+          user = response.json().users as Array<LibUser>;
+          console.log("User: "+user.login)
+          return Promise.resolve(user);
+        })
+       .catch(
+        this.handleError
+       );
+  }
 
   create(user: LibUser): Promise<LibUser> {
     const url = `${this.usersUrl}/users/add`;
