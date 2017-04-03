@@ -55,6 +55,19 @@ export class AccountService {
               .catch(this.handleError);
   }
   
+  transaction(value: string, currentAccountId: string) {
+      const url = `${this.usersUrl}/${currentAccountId}/transaction`;
+      this.headers.set('X-Authorization', this.localStService.get<string>('token'));
+      let options = new RequestOptions({ headers: this.headers });
+      let data = {"value":value};
+      return this.http.post(url, data, options)
+      .toPromise()
+      .then(response => {
+          return Promise.resolve(response);
+      })
+      .catch(this.handleError);
+  }
+  
    getBanks(bank: LibBank): Promise<LibBank[]>{
     const url = `${this.usersUrl}/banks`;
     this.headers.set('X-Authorization', this.localStService.get<string>('token'));

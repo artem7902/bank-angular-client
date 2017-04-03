@@ -54,4 +54,21 @@ export class AccountComponent implements OnInit {
                   console.log("Transactions get error or Rest is turn off!");
               });
   }
+  
+  transaction(value: string, operation: string) {
+      if(!value) {
+          alert("fill all fields!");
+          return;
+      }
+      value = operation.indexOf("bring_in") > -1 ? value : '-' + value;
+      this.service.transaction(value, this.accountId)
+      .then(response => {
+          this.account = response.json().account as LibAccount;
+          console.log(this.account.value);
+          this.account.transaction = response.json().transaction as Array<LibTransaction>;
+      })
+      .catch(() => {
+          console.log("Transactions get error or Rest is turn off!");
+      });
+  }
 }

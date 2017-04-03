@@ -4,8 +4,12 @@
             <span id="balance">Balance: </span> {{this.account.value}} <br>  <br>
             <!-- required_payment <br> <br>
             monthly_profit <br> <br> -->
-            Bring in: <input type="text" id="bring_in"> <button id="bring_in_button">OK</button> <br>  <br>
-            Withdraw: <input type="text" id="withdraw"> <button id="withdraw_button">OK</button> <br>  <br>
+            
+            Bring in: <input type="text" #bring_in>
+            <button id="bring_in_button" (click) = "transaction(bring_in.value, 'bring_in')">OK</button> <br>  <br>
+            Withdraw: <input type="text" #withdraw>
+            <button id="withdraw_button" (click) = "transaction(withdraw.value, 'withdraw')">OK</button> <br>  <br>
+            
             <h3>Transfer Money</h3>
             Id: <input type="text" #account_id> <br>  <br>
             Value: <input type="text" #value> <br>  <br>
