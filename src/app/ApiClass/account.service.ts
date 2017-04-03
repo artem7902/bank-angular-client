@@ -5,13 +5,14 @@ import { LocalStorageService } from 'angular-2-local-storage';
 import  { LibAccount } from './lib-account'
 import { LibTransaction } from './lib-transaction'
 import  { LibBank } from './lib-bank'
+import { SecretService } from './secret.service';
 @Injectable()
 export class AccountService {
 
   private headers = new Headers({'Content-Type': 'application/json'});
   private usersUrl = 'http://localhost:3357';  // URL to web api
   
-  constructor(private http: Http, private localStService: LocalStorageService) { }
+  constructor(private http: Http, private localStService: LocalStorageService, private secretSer: SecretService) { }
   
   getAccountsForUser(username: string): Promise<LibAccount[]>{
     const url = `${this.usersUrl}/users/${username}/accounts`;
@@ -21,7 +22,12 @@ export class AccountService {
                .toPromise()
                .then(response =>{
                  console.log("accounts JSON: "+JSON.stringify(response.json()));
-                 return Promise.resolve(response.json().accounts as Array<LibAccount>);
+                 if(response.json().accounts==null)return Promise.resolve(null);
+                let Accounts = new Array<LibAccount>();
+                for(let i=0; i<response.json().accounts.length; i++){
+                Accounts[i]=this.secretSer.toInternal(response.json().accounts[i]) as LibAccount;
+                }
+                 return Promise.resolve(Accounts as Array<LibAccount>);
                })
                .catch(this.handleError);
 }
@@ -49,7 +55,7 @@ export class AccountService {
                .toPromise()
                .then(response =>{
                  console.log("accounts JSON: "+JSON.stringify(response.json()));
-                 return Promise.resolve(response.json().banks as Array<LibBank>);
+                 return Promise.resolve(this.secretSer.toInternal(response.json().banks) as Array<LibBank>);
                })
                .catch(this.handleError);
 }    
@@ -61,7 +67,7 @@ export class AccountService {
                .toPromise()
                .then(response =>{
                  console.log("account JSON: "+JSON.stringify(response.json()));
-                 return Promise.resolve(response.json().accounts[0] as LibAccount);
+                 return Promise.resolve(this.secretSer.toInternal(response.json().accounts[0]) as LibAccount);
                })
                .catch(this.handleError);
 }     
