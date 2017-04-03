@@ -16,6 +16,7 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { AppRoutingModuleModule } from './app-routing-module/app-routing-module.module';
 import { SliderComponent } from './slider/slider.component';
 import { AdminComponent } from './admin/admin.component';
+import { NewdashboardComponent } from './newdashboard/newdashboard.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { AdminComponent } from './admin/admin.component';
     PagenotfoundComponent,
     SliderComponent,
     AdminComponent,
+    NewdashboardComponent,
   ],
   imports: [
     BrowserModule,

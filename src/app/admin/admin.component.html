@@ -1,19 +1,7 @@
-<div align="center"><h1>Control panel for admin's users</h1></div>
-<!-- <p align="center">Login: <input type="text" #login></p>
+
+<div align="center"><h1>Control panel for admin</h1></div>
+<p align="center"><input type="hidden" #login></p>
 <p align="center">Password: <input type="password" #password ></p>
 <div align="center">
-<input  type="button" value="Sign in" id="sign_in"   (click)="user_check(login.value, password.value); password.value='';">
-</div> -->
-<div id="accounts_block" align="center">
-        <table id="appusers_table" border="1" style=" margin: 0; padding: 0; font-size: 20px; text-align: center;">
-            <caption><h2>Users</h2></caption>
-            <tr *ngFor="let user of this.users" (click)="viewUserDetails(user.user_id)">
-                <td>{{user.user_id}}</td>
-                <td>{{user.login}}</td>
-                <td>{{user.email}}</td>
-                <td>{{user.firstName}}</td>
-                <td>{{user.lastName}}</td>
-                <td>{{user.phone}}</td>
-            </tr>
-        </table>
+  <input  type="button" value="Sign in" id="sign_in"   (click)="user_check(login.value, password.value); password.value='';">
 </div>

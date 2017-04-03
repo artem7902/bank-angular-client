@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from '../app.component';
 import { LoginComponent } from '../login/login.component';
 import { DashboardComponent } from '../dashboard/dashboard.component';
+import { NewdashboardComponent } from '../newdashboard/newdashboard.component';
 import { AccountComponent } from '../account/account.component';
 import { CreateAccountComponent } from '../create-account/create-account.component';
 import { NotificationComponent } from '../notification/notification.component';
@@ -14,6 +15,7 @@ import { AdminComponent } from '../admin/admin.component';
 const routes: Routes = [
 { path: '',  redirectTo: "/login", pathMatch: 'full'},
   { path: 'dashboard/:username',  component: DashboardComponent },
+  { path: 'newdashboard/:username',  component: NewdashboardComponent },
   { path: 'registration', component: RegistrationComponent },
   { path: ':username/accounts/new',  component: CreateAccountComponent },
   { path: ':username/accounts/:accountId',     component: AccountComponent },

@@ -30,16 +30,12 @@ export class LoginComponent implements OnInit {
         if(user!=null){
             this.localStService.set('login', login);
             this.localStService.set('password', password);
-            if(user.role_id == 0) {
-                this.router.navigate(['/admin']);
-            } else {
                 this.router.navigate(['/dashboard/' + user.login]);
-            }
         } else {
             alert('Login or password is incorrect, please try again!');
         }
         })
-        .catch( ()=> 
+        .catch( ()=>
         {
         alert('We have some problem on Main Server, please send message to support');
         }
