@@ -15,6 +15,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { AppRoutingModuleModule } from './app-routing-module/app-routing-module.module';
 import { SliderComponent } from './slider/slider.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { SliderComponent } from './slider/slider.component';
     RegistrationComponent,
     PagenotfoundComponent,
     SliderComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,

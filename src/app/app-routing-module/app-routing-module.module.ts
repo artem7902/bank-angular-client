@@ -9,6 +9,7 @@ import { CreateAccountComponent } from '../create-account/create-account.compone
 import { NotificationComponent } from '../notification/notification.component';
 import { RegistrationComponent } from '../registration/registration.component';
 import { PagenotfoundComponent } from '../pagenotfound/pagenotfound.component';
+import { AdminComponent } from '../admin/admin.component';
 
 const routes: Routes = [
 { path: '',  redirectTo: "/login", pathMatch: 'full'},
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: ':username/accounts/:id',     component: AccountComponent },
   { path: 'login',  component: LoginComponent },
   { path: ':username/notifications',  component: NotificationComponent },
+{path: 'admin' , component:AdminComponent},
   { path: '**', component: PagenotfoundComponent }
 ];
 
