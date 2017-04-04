@@ -108,7 +108,7 @@ login(login:string, password: string): Promise<any>{
             .toPromise()
             .then(response =>{
                 console.log("LibUser JSON: "+JSON.stringify(response.json()));
-        return Promise.resolve(this.secretSer.toInternal(response.json()) as LibUser);
+        return Promise.resolve(this.secretSer.toOrFromInternal(response.json()) as LibUser);
             })
             .catch(this.handleError);
         }

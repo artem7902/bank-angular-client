@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { Headers, Http, RequestOptions } from '@angular/http';
 import { LibNotification } from './lib-notification';
 import { LocalStorageService } from 'angular-2-local-storage';
+import {SecretService} from './secret.service';
 
 @Injectable()
 export class NotificationService {
   private headers = new Headers({'Content-Type': 'application/json'});
   private usersUrl = 'http://localhost:3357';  // URL to web api
-  constructor(private http: Http, private localStService: LocalStorageService) { }
+  constructor(private http: Http, private localStService: LocalStorageService, private secretSer: SecretService) { }
   getNotificationsForUser(username: string): Promise<LibNotification[]>{
     const url = `${this.usersUrl}/${username}/notifications`;
     this.headers.set('X-Authorization', this.localStService.get<string>('token'));
@@ -16,7 +17,7 @@ export class NotificationService {
                .toPromise()
                .then(response =>{
                  console.log("notifications JSON: "+JSON.stringify(response.json()));
-                 return Promise.resolve(response.json().notifications as Array<LibNotification>);
+                 return Promise.resolve(this.secretSer.toOrFromInternal(response.json().notifications) as Array<LibNotification>);
                })
                .catch(this.handleError);
 }

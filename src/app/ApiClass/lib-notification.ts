@@ -3,5 +3,5 @@ notificationId? : string;
 text: string;
 date: string;
 userId?: string;
-isChecked: boolean;
+isChecked: string;
 }

@@ -6,7 +6,7 @@
                 <td>Date</td>
                 <td>Text</td>
             </tr>
-            <tr *ngFor="let notification of this.notifications" [style.font-weight]="getStyle(notification.isChecked)">
+            <tr *ngFor="let notification of this.notifications" [style.font-weight]="getStyle(notification.isChecked!='false')">
                 <td>{{notification.date}}</td>
                 <td>{{notification.text}}</td>
             </tr>

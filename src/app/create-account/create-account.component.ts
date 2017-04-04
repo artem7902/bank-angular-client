@@ -21,9 +21,9 @@ export class CreateAccountComponent implements OnInit {
   ngOnInit() {
       this.titleService.setTitle('Create new account');
       this.banks = new Array<LibBank>();
-      this.GetBanks("", 0, 100);
+      this.GetBanks("", '0', '100');
   }
-    GetBanks(bankName: string, depPers: number, credPers: number){
+    GetBanks(bankName: string, depPers: string, credPers: string){
     let bank = new LibBank();
     bankName=bankName.trim();
     bank.name=bankName;

@@ -22,12 +22,7 @@ export class AccountService {
                .toPromise()
                .then(response =>{
                  console.log("accounts JSON: "+JSON.stringify(response.json()));
-                 if(response.json().accounts==null)return Promise.resolve(null);
-                let Accounts = new Array<LibAccount>();
-                for(let i=0; i<response.json().accounts.length; i++){
-                Accounts[i]=this.secretSer.toInternal(response.json().accounts[i]) as LibAccount;
-                }
-                 return Promise.resolve(Accounts as Array<LibAccount>);
+                 return Promise.resolve(this.secretSer.toOrFromInternal(response.json().accounts) as Array<LibAccount>);
                })
                .catch(this.handleError);
 }
@@ -51,11 +46,11 @@ export class AccountService {
     const url = `${this.usersUrl}/banks`;
     this.headers.set('X-Authorization', this.localStService.get<string>('token'));
     let options = new RequestOptions({ headers: this.headers });
-    return this.http.post(url, bank, options)
+    return this.http.post(url, this.secretSer.toOrFromInternal(bank), options)
                .toPromise()
                .then(response =>{
                  console.log("accounts JSON: "+JSON.stringify(response.json()));
-                 return Promise.resolve(this.secretSer.toInternal(response.json().banks) as Array<LibBank>);
+                 return Promise.resolve(this.secretSer.toOrFromInternal(response.json().banks) as Array<LibBank>);
                })
                .catch(this.handleError);
 }    
@@ -67,7 +62,7 @@ export class AccountService {
                .toPromise()
                .then(response =>{
                  console.log("account JSON: "+JSON.stringify(response.json()));
-                 return Promise.resolve(this.secretSer.toInternal(response.json().accounts[0]) as LibAccount);
+                 return Promise.resolve(this.secretSer.toOrFromInternal(response.json().accounts[0]) as LibAccount);
                })
                .catch(this.handleError);
 }     

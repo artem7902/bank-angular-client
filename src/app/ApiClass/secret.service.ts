@@ -23,11 +23,16 @@ export class SecretService {
         return (this.xor(mybuf, mybuf2).toString('utf-8'));
         }
           
-  public toInternal(CurrentObject: any): any{
+  public toOrFromInternal(CurrentObject: any): any{
    if(CurrentObject==null)return null;
+   if(CurrentObject instanceof Array){
+        for(let i = 0 ; i< (CurrentObject as Array<any>).length; i++) CurrentObject[i]=this.toOrFromInternal(CurrentObject[i]);
+   }
+   else{
    let array = Object.getOwnPropertyNames(CurrentObject);
    for(let prop of array){
-        if(CurrentObject[prop]!=null)CurrentObject[prop] = this.XorBytes(this.localStService.get('SuperSecret') as string, CurrentObject[prop]);
+        if(CurrentObject[prop]!=null)CurrentObject[prop] = this.XorBytes(this.localStService.get('SuperSecret') as string, CurrentObject[prop].toString());
+   }
    }
    return CurrentObject;
    }
