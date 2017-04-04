@@ -7,9 +7,9 @@ export class LibUser{
     email?: string;
     adress?: string;
     phone?: string;
-    wallet?: number;
+    wallet?: string;
     role_id?: number;
-    notif_size?: number;
+    notif_size?: string;
     currentTime?: string;
     FullName? : string;
 }

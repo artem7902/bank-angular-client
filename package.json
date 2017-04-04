@@ -31,7 +31,10 @@
     "datejs": "^1.0.0-rc3",
     "@types/datejs" : "^0.0.29",
     "rxjs": "^5.1.0",
-    "zone.js": "^0.8.4"
+    "zone.js": "^0.8.4",
+    "bignumber.js": "^4.0.0",
+    "@types/bignumber.js": "^4.0.2",
+    "buffer-xor" : "^2.0.1"
   },
   "devDependencies": {
     "@angular/cli": "1.0.0",

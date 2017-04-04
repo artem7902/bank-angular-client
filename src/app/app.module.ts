@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import {RouterModule} from '@angular/router';
 import {LocalStorageModule} from 'angular-2-local-storage';
+import {SecretService} from './ApiClass/secret.service';
 
 import {AppComponent} from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -43,7 +44,7 @@ import { NewdashboardComponent } from './newdashboard/newdashboard.component';
             storageType: 'localStorage'
         })
   ],
-  providers: [Title],
+  providers: [Title, SecretService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

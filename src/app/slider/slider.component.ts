@@ -26,7 +26,7 @@ export class SliderComponent implements OnInit {
      }, 1000);
     this.InfoInt=setInterval(() => {
       this.UpdateInfo();
-     }, 10000);
+     }, 100000);
     this.router.events.subscribe((event) =>
     {
     if(event instanceof NavigationStart){  this.StopInterval()};

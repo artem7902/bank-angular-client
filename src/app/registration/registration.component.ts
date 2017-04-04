@@ -39,7 +39,7 @@ export class RegistrationComponent implements OnInit {
     user.email = email;
     user.adress = adress;
     user.phone = phone;
-    user.wallet = 1000;
+    user.wallet = "1000";
     user.role_id = 1;
     user.password=password;
     this.libuserService.create(user)
