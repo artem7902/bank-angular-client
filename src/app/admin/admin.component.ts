@@ -14,8 +14,8 @@ export class AdminComponent implements OnInit {
   constructor(private libuserService: AppuserService, private router: Router, private localStService: LocalStorageService) { }
 
   ngOnInit() {
-    if(this.localStService.get<string>('login')!='' && this.localStService.get<string>('password')!='')
-      this.router.navigate(['/newdashboard/' + this.localStService.get<string>('login')]);
+    //if(this.localStService.get<string>('login')!='' && this.localStService.get<string>('password')!='')
+     // this.router.navigate(['/newdashboard/' + this.localStService.get<string>('login')]);
   }
   user_check(login: string, password : string){
     let user: LibUser = new LibUser();

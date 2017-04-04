@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Title }     from '@angular/platform-browser';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+
 import { AppuserService }    from '../ApiClass/appuser.service';
 import { LibUser }                from '../ApiClass/lib-user';
 
@@ -12,7 +14,7 @@ import { LibUser }                from '../ApiClass/lib-user';
 export class NewdashboardComponent implements OnInit {
   private users: LibUser[];
 
-  constructor(private titleService: Title, private appservice: AppuserService ) { }
+  constructor(private titleService: Title, private appservice: AppuserService, private router: Router) { }
 
 
 
@@ -29,9 +31,5 @@ export class NewdashboardComponent implements OnInit {
       }).catch(() => {
       console.log("Accounts get error or Rest is turn off!");
     });
-  }
-
-  viewUserDetails(user_id: string) {
-
   }
 }

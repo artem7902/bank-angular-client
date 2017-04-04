@@ -8,12 +8,21 @@
 <div id="accounts_block" align="center">
   <table id="appusers_table" border="1" style=" margin: 0; padding: 0; font-size: 20px; text-align: center;">
     <caption><h2>Users</h2></caption>
-    <tr *ngFor="let user of this.users" (click)="viewUserDetails(user.user_id)">
+    	<tr id="table_head" style="font-weight: bold;">
+            <td>User id</td>
+            <td>Login</td>
+            <td>Email</td>
+            <td>First name</td>
+            <td>Last name</td>
+            <td>Phone</td>
+        </tr>
+    <tr *ngFor="let user of this.users">
       <td>{{user.user_id}}</td>
       <td>{{user.login}}</td>
       <td>{{user.email}}</td>
       <td>{{user.firstName}}</td>
       <td>{{user.lastName}}</td>
+      <td>{{user.phone}}</td>
       <td>{{user.phone}}</td>
     </tr>
   </table>

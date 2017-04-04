@@ -1,4 +1,6 @@
-<app-slider></app-slider>
+<div *ngIf="isUser">
+	<app-slider></app-slider>
+</div>
         <div id="accounts_block" align="center">
         <table id="account_table" border="1" style=" margin: 0; padding: 0; font-size: 20px; text-align: center;">
             <caption><h2>Accounts</h2></caption>
@@ -17,5 +19,7 @@
                 <td>{{account.DepositPersent}}</td>
             </tr>
         </table>
+        <div *ngIf="isUser">
             <button routerLink="/{{this.username}}/accounts/new" id="account_create_buton" style="margin-top: 20px; margin-left: 10%; cursor: pointer; font-size: 16px">Create new account</button>
+        </div>
         </div>
